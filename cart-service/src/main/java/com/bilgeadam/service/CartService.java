@@ -1,10 +1,14 @@
 package com.bilgeadam.service;
 
 
+import com.bilgeadam.exception.CartManagerException;
+import com.bilgeadam.exception.ErrorType;
+import com.bilgeadam.repository.ICartRepository;
 import com.bilgeadam.repository.entity.Cart;
 import com.bilgeadam.utility.ServiceManager;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /*
     1-
@@ -28,8 +32,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class CartService extends ServiceManager<Cart, Long> {
 
+    private final ICartRepository cartRepository;
 
-    public CartService(JpaRepository<Cart, Long> repository) {
-        super(repository);
+    public CartService(ICartRepository cartRepository) {
+        super(cartRepository);
+        this.cartRepository = cartRepository;
+    }
+
+    //TODO user save methoduna bağla
+    public Boolean createCart(Cart cart) {
+        try {
+            save(cart);
+            return true;
+        } catch (Exception e) {
+            throw new CartManagerException(ErrorType.CART_NOT_CREATED);
+        }
+    }
+    
+    public void deleteCart(Long id) {
+        Cart cart = cartRepository.findById(id).get();
+        cartRepository.delete(cart);
+    }
+
+    public Object findAllCarts() {
+    }
+
+    public Object updateCart() {
     }
 }
