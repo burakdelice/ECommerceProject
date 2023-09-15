@@ -17,6 +17,7 @@
         <module name="Java10SocialMedia.git-config-server.main" />
         <module name="Java10SocialMedia.mail-service.main" />
         <module name="Java10SocialMedia.cart-service.main" />
+        <module name="Java10SocialMedia.product-service.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />

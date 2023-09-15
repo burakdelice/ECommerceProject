@@ -11,6 +11,8 @@ public class EndPoints {
     public  static  final String DELETE_BY_ID="/delete_by_id";
     public  static  final String SAVE="/save";
 
+
+
     ///User
     public  static  final String ACTIVATE_STATUS="/activate_status";
 

@@ -54,9 +54,11 @@ public class CartService extends ServiceManager<Cart, Long> {
         cartRepository.delete(cart);
     }
 
-    public Object findAllCarts() {
-    }
-
-    public Object updateCart() {
+    public Cart getCardById(String userId) {
+        Optional<Cart> cart = cartRepository.findCartByUserId(userId);
+        if(cart.isEmpty()){
+            throw new CartManagerException(ErrorType.CART_NOT_FOUND);
+        }
+        return cart.get();
     }
 }

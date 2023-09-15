@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +19,8 @@ public class Cart{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
-    private Long productId;
-    private String productName;
-    private String productQuantity;
+    private String userId;
+    @ElementCollection
+    private Map<String,Integer> productList;
+
 }
